@@ -29,13 +29,13 @@
             </form>
         </div>
     </div>
-    
-    <script src="/public/assets/jquery/jquery.min.js"></script>
-    <script src="/public/assets/bootstrap/js/bootstrap.min.js"></script>
+
+    <?php include("./views/common/js.html"); ?>
+
     <script type="text/javascript">
         $('#login').click(function(){
             var formdata=$('#loginform').serialize();
-            console.log(formdata); 
+            console.log(formdata);
             $.ajax({
                 url:'/api/login',
                 type:'post',
