@@ -1,22 +1,22 @@
+define(['jquery'],function($){
+    //NProgress.start();
+    //NProgress.done();
+//控制左侧菜单的折叠和展开
+    $('.navs ul').prev('a').on('click', function () {
+        $(this).next().slideToggle();
+    });
 
-	NProgress.start();
-
-	NProgress.done();
-
-	$('.navs ul').prev('a').on('click', function () {
-		$(this).next().slideToggle();
-	});
-
-	$('#logoutBtn').click(function(){
-		console.log(123);
-		$.ajax({
-			type:'post',
-			url:'/api/logout',
-			dataType:'json',
-			success:function(data){
-				if(data.code==200){
-					location.href='/main/login';
-				}
-			}
-		})
-	})
+    $('#logoutBtn').click(function(){
+        console.log(123);
+        $.ajax({
+            type:'post',
+            url:'/api/logout',
+            dataType:'json',
+            success:function(data){
+                if(data.code==200){
+                    location.href='/main/login';
+                }
+            }
+        })
+    })
+})
