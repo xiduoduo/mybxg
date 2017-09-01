@@ -1,4 +1,6 @@
 define(['jquery','template','util','bootstrap'],function($,template,util){
+    var ret=util.qs('flag');
+    console.log(ret);
     util.setMenu(location.pathname);
     $.ajax({
         type:'get',
