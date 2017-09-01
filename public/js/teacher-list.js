@@ -27,6 +27,35 @@ define(['jquery','template','bootstrap'],function($,template){
                         $('#teacherModal').modal();
                     }
                 })
+
+            })
+            //控制启用和注销
+            $('.eod').click(function(){
+                var td=$(this).closest('td');
+                var tcId=td.attr('data-tcId');
+                var tcStatus=td.attr('data-status');
+                console.log(tcStatus);
+                var that=this;
+                $.ajax({
+                    type:'post',
+                    url:'/api/teacher/handle',
+                    data:{tc_id:tcId,tc_status:tcStatus},
+                    dataType:'json',
+                    success:function(data){
+                        console.log(data.result.tc_status)
+                        if(data.code==200){
+                            //修改当前状态
+                            td.attr('data-status',data.result.tc_status);
+                            //修改文字信息
+                            if(data.result.tc_status==0){
+                                $(that).html('注 销')
+                            }else{
+                                $(that).html('启 用')
+                            }
+                        }
+                    }
+                })
+
             })
         }
     });
