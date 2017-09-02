@@ -1,4 +1,4 @@
-define(['jquery','template','util'],function($,template,util){
+define(['jquery','template','util','datepicker','language'],function($,template,util){
     util.setMenu('/teacher/list');
 
     var tcId=util.qs('tc_id');
@@ -31,7 +31,9 @@ define(['jquery','template','util'],function($,template,util){
                 data:$('#teacherForm').serialize(),
                 dataType:'json',
                 success:function(data){
-                    console.log(data);
+                    if(data.code==200){
+                        location.href="/teacher/list";
+                    }
                 }
             })
         })
