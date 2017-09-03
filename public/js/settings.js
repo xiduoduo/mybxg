@@ -1,4 +1,4 @@
-define(['jquery','template','util'],function($,template,util){
+define(['jquery','template','util','uploadify','datepicker','language','region'],function($,template,util){
     //设置导航菜单选中
     util.setMenu('/main/index');
     $.ajax({
@@ -8,6 +8,25 @@ define(['jquery','template','util'],function($,template,util){
         success:function(data){
             var html=template('settingsTpl',data.result);
             $('#settingsInfo').html(html);
+            //处理头像上传
+            $('#upfile').uploadify({
+                width:120,
+                height:120,
+                buttonText:'',
+                itemTemplate:'<span></span>',
+                swf:'/public/assets/uploadify/uploadify.swf',
+                uploader:'/api/uploader/avatar',
+                fileObjName:'tc_avatar',
+                onUploadSuccess:function(f,data){
+                    var data=JSON.parse(data);
+                    console.log(data);
+                    $('.preview img').attr('src',data.result.path)
+                }
+
+            });
+            $('#pcd').region({
+                url:'/public/assets/jquery-region/region.json'
+            });
         }
     })
 })
