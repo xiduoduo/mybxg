@@ -1,7 +1,7 @@
 define(['jquery'],function($){
     return {
         setMenu:function(path){
-            $('.navs a[href="'+path+'"]').addClass('active');
+            $('.navs a[href="'+path+'"]').addClass('active').closest('ul').show();
         },
         qs:function(key){
             var param=location.search.substring(1);
